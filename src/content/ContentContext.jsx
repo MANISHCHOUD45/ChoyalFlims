@@ -3,11 +3,13 @@ import * as fallback from "./siteContent.js"
 
 /* =============================================================================
    CONTENT LOADER
-   Loads ALL website content from /content.json at runtime, so editing that one
-   JSON file (and refreshing) updates the whole site — no rebuild, no code.
-
-   If content.json is missing or has a typo, the site falls back to the built-in
-   defaults in siteContent.js so it never breaks.
+   Content is resolved in this order:
+     1. VITE_CONTENT_URL   — a URL (set in .env) to fetch the content JSON from
+        at runtime, e.g. a hosted JSON API. When set, it wins. Content behind
+        the URL is live: edit it and refresh — no rebuild needed.
+     2. /content.json      — the local file shipped with the build (fallback).
+     3. siteContent.js     — built-in defaults, so the site never breaks even if
+        the URL/file is missing or invalid. Also fills in any omitted keys.
    ============================================================================= */
 
 // Built-in defaults (safety net). Also fills in any keys omitted from the JSON.
@@ -34,9 +36,31 @@ export function ContentProvider({ children }) {
 
   useEffect(() => {
     let alive = true
-    // `no-store` so your edits to content.json show up on refresh (no stale cache).
-    fetch(import.meta.env.BASE_URL + "content.json", { cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error("content.json not found"))))
+
+    // Content source URL, set in .env as VITE_CONTENT_URL (e.g. a hosted JSON
+    // API). Leave it unset to use the local /content.json shipped with the build.
+    const remoteUrl = import.meta.env.VITE_CONTENT_URL
+    const localUrl = import.meta.env.BASE_URL + "content.json"
+
+    // `no-store` so content edits show up on refresh (no stale cache).
+    async function loadContent() {
+      // 1) Remote content API from .env, if configured.
+      if (remoteUrl) {
+        try {
+          const r = await fetch(remoteUrl, { cache: "no-store" })
+          if (r.ok) return await r.json()
+          console.warn("[Choyal Films] Remote content HTTP", r.status)
+        } catch (err) {
+          console.warn("[Choyal Films] Remote content failed:", err.message)
+        }
+      }
+      // 2) Fall back to the local content.json shipped with the build.
+      const r = await fetch(localUrl, { cache: "no-store" })
+      if (!r.ok) throw new Error("content.json not found")
+      return await r.json()
+    }
+
+    loadContent()
       .then((data) => {
         if (alive) setContent({ ...DEFAULT_CONTENT, ...data })
       })
@@ -45,6 +69,7 @@ export function ContentProvider({ children }) {
         console.warn("[Choyal Films] Using built-in content:", err.message)
         if (alive) setContent(DEFAULT_CONTENT)
       })
+
     return () => {
       alive = false
     }
