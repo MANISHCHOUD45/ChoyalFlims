@@ -4,13 +4,12 @@ import * as fallback from "./siteContent.js"
 /* =============================================================================
    CONTENT LOADER
    Content is resolved in this order:
-     1. VITE_CONTENT_JSON  — the ENTIRE content object embedded in .env as a
-        JSON string (plain JSON.stringify output, or base64 of it). When set,
-        it wins. Baked in at build time, so changing it needs a rebuild.
-     2. /content.json      — the local file shipped with the build (edit + refresh,
-        no rebuild needed).
+     1. VITE_CONTENT_URL   — a URL (set in .env) to fetch the content JSON from
+        at runtime, e.g. a hosted JSON API. When set, it wins. Content behind
+        the URL is live: edit it and refresh — no rebuild needed.
+     2. /content.json      — the local file shipped with the build (fallback).
      3. siteContent.js     — built-in defaults, so the site never breaks even if
-        the JSON is missing or has a typo. Also fills in any omitted keys.
+        the URL/file is missing or invalid. Also fills in any omitted keys.
    ============================================================================= */
 
 // Built-in defaults (safety net). Also fills in any keys omitted from the JSON.
@@ -38,34 +37,22 @@ export function ContentProvider({ children }) {
   useEffect(() => {
     let alive = true
 
-    // The whole content object, embedded in .env as a JSON string.
-    // Leave it unset to use the local /content.json instead.
-    const inlineJson = import.meta.env.VITE_CONTENT_JSON
+    // Content source URL, set in .env as VITE_CONTENT_URL (e.g. a hosted JSON
+    // API). Leave it unset to use the local /content.json shipped with the build.
+    const remoteUrl = import.meta.env.VITE_CONTENT_URL
     const localUrl = import.meta.env.BASE_URL + "content.json"
 
-    // Accept either a plain JSON.stringify(...) string or a base64 of one.
-    // (base64 sidesteps all the quoting headaches of pasting big JSON into .env.)
-    function parseInline(raw) {
-      const value = String(raw).trim()
-      if (!value) return null
-      try {
-        return JSON.parse(value)
-      } catch {
-        try {
-          return JSON.parse(atob(value))
-        } catch (err) {
-          console.warn("[Choyal Films] VITE_CONTENT_JSON is not valid JSON:", err.message)
-          return null
-        }
-      }
-    }
-
-    // `no-store` so edits to content.json show up on refresh (no stale cache).
+    // `no-store` so content edits show up on refresh (no stale cache).
     async function loadContent() {
-      // 1) Whole content JSON from .env, if provided.
-      if (inlineJson) {
-        const parsed = parseInline(inlineJson)
-        if (parsed) return parsed
+      // 1) Remote content API from .env, if configured.
+      if (remoteUrl) {
+        try {
+          const r = await fetch(remoteUrl, { cache: "no-store" })
+          if (r.ok) return await r.json()
+          console.warn("[Choyal Films] Remote content HTTP", r.status)
+        } catch (err) {
+          console.warn("[Choyal Films] Remote content failed:", err.message)
+        }
       }
       // 2) Fall back to the local content.json shipped with the build.
       const r = await fetch(localUrl, { cache: "no-store" })
