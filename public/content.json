@@ -1,5 +1,5 @@
 {
-  "_readme": "THIS FILE CONTROLS THE WHOLE WEBSITE. Edit any value below, save, and refresh the site — no rebuild needed. Images: paste any image URL, or use '/images/your-file.jpg' after putting the file in public/images/. Keep the quotes and commas valid (it is JSON). Tip: paste it into jsonlint.com if unsure.",
+  "_readme": "THIS FILE CONTROLS THE WHOLE WEBSITE. Edit any value below, save, and refresh the site — no rebuild needed. Images: paste any image URL, or use '/your-file.jpg' after putting the file in the public/ folder. Keep the quotes and commas valid (it is JSON). Tip: paste it into jsonlint.com if unsure.",
 
   "business": {
     "name": "Choyal Films",
@@ -26,10 +26,10 @@
   },
 
   "siteImages": {
-    "aboutImage": "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=1000&q=80",
-    "ctaBackground": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80",
-    "servicesHeader": "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=1920&q=80",
-    "contactHeader": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1920&q=80"
+    "aboutImage": "/670182868_17858970738685571_8515243225011457396_n.jpg",
+    "ctaBackground": "/702637799_17864729748685571_5839454232750709755_n.jpg",
+    "servicesHeader": "/702544739_17864595387685571_2421922390071084806_n.jpg",
+    "contactHeader": "/670785618_17858968023685571_9055134844816237124_n.jpg"
   },
 
   "instagramFeed": {
@@ -39,17 +39,17 @@
 
   "heroSlides": [
     {
-      "image": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80",
+      "image": "/702364692_17864729736685571_8609541488197777071_n.jpg",
       "heading": "Timeless Wedding Stories",
       "subheading": "Every glance, every vow, beautifully preserved."
     },
     {
-      "image": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1920&q=80",
+      "image": "/701623789_1984998319058408_4736399550168138119_n.jpg",
       "heading": "Moments That Matter",
       "subheading": "Candid frames full of emotion and life."
     },
     {
-      "image": "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1920&q=80",
+      "image": "/700369785_17864224056685571_1361103943877693342_n.jpg",
       "heading": "Portraits With Soul",
       "subheading": "Photography that reflects who you truly are."
     }
@@ -59,7 +59,7 @@
     {
       "id": "weddings",
       "title": "Wedding Photography",
-      "image": "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=1200&q=80",
+      "image": "/702544739_17864595387685571_2421922390071084806_n.jpg",
       "short": "Cinematic coverage of your big day, from haldi to vidaai.",
       "details": "Full-day wedding coverage including candid and traditional photography, cinematic films, pre-wedding shoots and premium albums. We capture every ritual, emotion and celebration so you relive the day forever.",
       "features": ["Candid & Traditional", "Cinematic Films", "Pre-Wedding Shoots", "Premium Albums"]
@@ -67,7 +67,7 @@
     {
       "id": "events",
       "title": "Event Photography",
-      "image": "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1200&q=80",
+      "image": "/700343350_17864219706685571_8723787513428988680_n.jpg",
       "short": "Birthdays, corporate events, functions and celebrations.",
       "details": "Professional coverage for birthdays, anniversaries, corporate functions, concerts and family celebrations. Crisp, vibrant photos that keep the energy of your event alive.",
       "features": ["Birthdays & Parties", "Corporate Events", "Anniversaries", "Live Coverage"]
@@ -75,7 +75,7 @@
     {
       "id": "portraits",
       "title": "Portrait Photography",
-      "image": "https://images.unsplash.com/photo-1554080353-a576cf803bda?auto=format&fit=crop&w=1200&q=80",
+      "image": "/700369785_17864224056685571_1361103943877693342_n.jpg",
       "short": "Studio & outdoor portraits that capture your personality.",
       "details": "Individual, family and fashion portraits shot in studio or on location. Thoughtfully lit and styled to bring out your best, most natural self.",
       "features": ["Individual & Family", "Fashion & Model", "Studio & Outdoor", "Maternity & Newborn"]
@@ -83,28 +83,27 @@
     {
       "id": "prewedding",
       "title": "Pre-Wedding Shoots",
-      "image": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80",
+      "image": "/658415041_17857055661685571_8068229227231941343_n.jpg",
       "short": "Romantic story-driven shoots at stunning locations.",
       "details": "Creative, location-based pre-wedding shoots designed around your story. We scout beautiful backdrops and direct natural, romantic moments.",
       "features": ["Location Scouting", "Concept & Styling", "Cinematic Edits", "Reels & Teasers"]
     }
   ],
 
-  "galleryFilters": ["All", "Weddings", "Events", "Portraits", "Pre-Wedding"],
+  "galleryFilters": ["All", "Weddings", "Pre-Wedding", "Portraits"],
 
   "gallery": [
-    { "image": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80", "category": "Weddings", "alt": "Bride and groom" },
-    { "image": "https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=900&q=80", "category": "Weddings", "alt": "Wedding ceremony" },
-    { "image": "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=900&q=80", "category": "Portraits", "alt": "Portrait" },
-    { "image": "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=900&q=80", "category": "Events", "alt": "Event crowd" },
-    { "image": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=900&q=80", "category": "Pre-Wedding", "alt": "Couple pre-wedding" },
-    { "image": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80", "category": "Weddings", "alt": "Wedding couple" },
-    { "image": "https://images.unsplash.com/photo-1554080353-a576cf803bda?auto=format&fit=crop&w=900&q=80", "category": "Portraits", "alt": "Woman portrait" },
-    { "image": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80", "category": "Events", "alt": "Celebration" },
-    { "image": "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=900&q=80", "category": "Pre-Wedding", "alt": "Couple outdoors" },
-    { "image": "https://images.unsplash.com/photo-1595407753234-0882f1e77954?auto=format&fit=crop&w=900&q=80", "category": "Portraits", "alt": "Man portrait" },
-    { "image": "https://images.unsplash.com/photo-1600718374662-0483d2b9da44?auto=format&fit=crop&w=900&q=80", "category": "Weddings", "alt": "Wedding details" },
-    { "image": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80", "category": "Events", "alt": "Party lights" }
+    { "image": "/702364692_17864729736685571_8609541488197777071_n.jpg", "category": "Weddings", "alt": "Royal wedding celebration" },
+    { "image": "/701623789_1984998319058408_4736399550168138119_n.jpg", "category": "Weddings", "alt": "Bride and groom in royal attire" },
+    { "image": "/702544739_17864595387685571_2421922390071084806_n.jpg", "category": "Weddings", "alt": "Couple by the heritage lake" },
+    { "image": "/700343350_17864219706685571_8723787513428988680_n.jpg", "category": "Weddings", "alt": "Couple walking hand in hand" },
+    { "image": "/702231551_17864232096685571_5324002471935366188_n.jpg", "category": "Weddings", "alt": "Candid wedding moment" },
+    { "image": "/658415041_17857055661685571_8068229227231941343_n.jpg", "category": "Pre-Wedding", "alt": "Beachside pre-wedding shoot" },
+    { "image": "/670182868_17858970738685571_8515243225011457396_n.jpg", "category": "Pre-Wedding", "alt": "Couple at a heritage temple" },
+    { "image": "/670355394_17858969229685571_1846679872559606919_n.jpg", "category": "Pre-Wedding", "alt": "Romantic temple portrait" },
+    { "image": "/670785618_17858968023685571_9055134844816237124_n.jpg", "category": "Pre-Wedding", "alt": "Among the temple pillars" },
+    { "image": "/702637799_17864729748685571_5839454232750709755_n.jpg", "category": "Pre-Wedding", "alt": "Artistic heritage backdrop" },
+    { "image": "/700369785_17864224056685571_1361103943877693342_n.jpg", "category": "Portraits", "alt": "Intimate candid close-up" }
   ],
 
   "testimonials": [
